@@ -21,12 +21,7 @@ public class DistanceMatrixService {
         this.apiKey = googleMapsApiKey;
     }
 
-    /**
-     * Fetch travel time between two places with traffic (departure_time=now)
-     * @param origin      e.g. "Stockholm+Sweden" or lat,lng
-     * @param destination e.g. "Uppsala+Sweden" or lat,lng
-     * @return Map with duration and duration_in_traffic
-     */
+
     public Mono<Map<String, String>> getTravelTime(String origin, String destination) {
         return mapsWebClient.get()
                 .uri(uriBuilder -> uriBuilder

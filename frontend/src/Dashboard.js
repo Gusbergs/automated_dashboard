@@ -13,7 +13,6 @@ import {
   WiSnow,
 } from 'weather-icons-react';import './Dashboard.css'; // Din befintliga CSS
 
-// Hjälp-funktion: räkna ut om ett ISO-datum är "idag"
 function isToday(isoString) {
   const d = new Date(isoString);
   const today = new Date();
