@@ -21,7 +21,6 @@ public class SecurityConfig {
             HttpSecurity http,
             ClientRegistrationRepository clientRegistrationRepository
     ) throws Exception {
-        // Skapa en resolver och lägg på prompt=consent
         var resolver = new DefaultOAuth2AuthorizationRequestResolver(
                 clientRegistrationRepository, "/oauth2/authorization"
         );
@@ -49,11 +48,9 @@ public class SecurityConfig {
                                 res.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 )
                 .oauth2Login(oauth -> oauth
-                        // Använd vår custom resolver
                         .authorizationEndpoint(endpoint ->
                                 endpoint.authorizationRequestResolver(resolver)
                         )
-                        // Behåll din redirect efter lyckad login
                         .defaultSuccessUrl("http://localhost:3000", true)
                 )
                 .logout(logout ->

@@ -17,9 +17,7 @@ public class TravelTimeController {
         this.distanceMatrixService = distanceMatrixService;
     }
 
-    /**
-     * GET /api/travel-time?origin=...&destination=...
-     */
+
     @GetMapping("/api/travel-time")
     public Mono<Map<String,String>> getTravelTime(
             @RequestParam String origin,

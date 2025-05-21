@@ -4,16 +4,15 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Visar laddning innan beslut
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('http://localhost:8080/api/user', {
       method: 'GET',
-      credentials: 'include', // viktigt för att cookies/token ska skickas
+      credentials: 'include',
     })
       .then(res => {
         if (res.status === 401) {
-          // Användaren är inte inloggad → visa login-knapp istället för redirecta
           setUser(null);
           setLoading(false);
           return null;

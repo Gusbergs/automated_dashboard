@@ -1,18 +1,16 @@
-/* Gör att hela skärmen används */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;  /* två kolumner */
-  grid-template-rows: 1fr 1fr;     /* två rader */
-  height: 100vh;                   /* 100% av skärm-höjden */
-  width: 100vw;                    /* 100% av skärm-bredden */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  height: 100vh;
+  width: 100vw;
   margin: 0;
-  padding: 1rem;                   /* lite padding runt hela grid */
-  gap: 1rem;                       /* ersätter kortens margin */
+  padding: 1rem;
+  gap: 1rem;
   box-sizing: border-box;
   background-color: grey;
 }
 
-/* Gemensam stil på varje kort */
 .dashboard-card {
   background-color: #ffffff;
   border: 1px solid #ddd;
@@ -21,42 +19,41 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;    /* börja från toppen */
-  align-items: stretch;           /* ta full bredd */
+  justify-content: flex-start;
+  align-items: stretch;
   font-family: sans-serif;
   transition: transform 0.2s ease-in-out;
-  overflow: hidden;                /* för att scroll-området inte ska spilla ut */
+  overflow: hidden;
   font-size: 1.5rem;
   font-weight: 500;
 }
 
-/* Kortets rubrik */
 .dashboard-card h2 {
   margin-bottom: 1rem;
   text-align: center;
 }
 
-/* Gemensam textstil */
+
 .dashboard-card p {
   color: #444;
   text-align: center;
 }
 
-/* Specifik stil för SL-avgångar-kortet */
+
 .dashboard-card.trips {
   padding: 1.5rem;
 }
 
-/* Listan med avgångar */
+
 .dashboard-card.trips .trip-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 1;                          /* tar kvarvarande höjd i kortet */
-  overflow-y: auto;                 /* scroll om det behövs */
+  flex: 1;
+  overflow-y: auto;
 }
 
-/* Enskilda avgångs-rader */
+
 .dashboard-card.trips .trip-list li {
   display: flex;
   justify-content: space-between;
@@ -66,17 +63,17 @@
   font-size: 0.9rem;
 }
 
-/* Sista raden utan border */
+
 .dashboard-card.trips .trip-list li:last-child {
   border-bottom: none;
 }
 
-/* Specifik stil för Kalender-kortet */
+
 .dashboard-card.events {
   padding: 1.5rem;
 }
 
-/* Listan med kalenderhändelser */
+
 .dashboard-card.events .event-list {
   list-style: none;
   padding: 0;
@@ -85,7 +82,7 @@
   overflow-y: auto;
 }
 
-/* Enskilda event-rader */
+
 .dashboard-card.events .event-list li {
   display: flex;
   justify-content: space-between;
@@ -95,7 +92,6 @@
   font-size: 0.9rem;
 }
 
-/* Sista event-raden utan border */
 .dashboard-card.events .event-list li:last-child {
   border-bottom: none;
 }
