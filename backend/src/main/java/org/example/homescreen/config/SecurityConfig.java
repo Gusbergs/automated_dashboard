@@ -4,10 +4,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizationRequestResolver;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.*;
 
@@ -41,7 +43,15 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/api/weather"
                         ).permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().access((authentication, context) -> {
+                            var Oauth = authentication.get();
+                            if (Oauth.getPrincipal() instanceof OAuth2User user) {
+                                String email = user.getAttribute("email");
+                                System.out.println(email);
+                                return new AuthorizationDecision("gustavbergstrom98@gmail.com".equals(email));
+                            }
+                            return new AuthorizationDecision(false);
+                        })
                 )
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((req, res, authEx) ->
