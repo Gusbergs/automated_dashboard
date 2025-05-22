@@ -24,7 +24,6 @@ public class SlTripsService {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
 
         return mapper.readValue(response.body(), SlRoot.class);
     }
