@@ -111,7 +111,7 @@ const Dashboard = () => {
       .then(res => {
         if (res.status === 401) {
           // inte inloggad → omdirigera hela sidan till Google OAuth2
-          window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+          window.location.href = '/oauth2/authorization/google';
           // returnera en tom Promise så vi inte går vidare i kedjan
           return new Promise(() => {});
         }

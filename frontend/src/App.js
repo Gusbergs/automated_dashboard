@@ -7,7 +7,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/user', {
+    fetch('/api/user', {
       method: 'GET',
       credentials: 'include',
     })
@@ -34,7 +34,7 @@ function App() {
 
   const handleLogin = () => {
     // Direkt redirect till Spring Security Google-login
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    window.location.href = '/oauth2/authorization/google';
   };
 
   if (loading) return <div>Laddar...</div>;
@@ -49,7 +49,7 @@ function App() {
               <strong>{user.name}</strong><br />
               <small>{user.email}</small>
             </div>
-            <a href="http://localhost:8080/logout">Logga ut</a>
+            <a href="/logout">Logga ut</a>
           </div>
         ) : (
           <button onClick={handleLogin}>Logga in med Google</button>
