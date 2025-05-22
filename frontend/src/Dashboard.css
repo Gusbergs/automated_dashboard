@@ -60,7 +60,7 @@
   align-items: center;
   padding: 0.5rem 0;
   border-bottom: 1px solid #eee;
-  font-size: 0.9rem;
+  font-size: 2rem;
 }
 
 
@@ -89,7 +89,7 @@
   align-items: center;
   padding: 0.5rem 0;
   border-bottom: 1px solid #eee;
-  font-size: 0.9rem;
+  font-size: 2rem;
 }
 
 .dashboard-card.events .event-list li:last-child {

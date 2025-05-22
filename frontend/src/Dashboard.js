@@ -165,7 +165,7 @@ const Dashboard = () => {
         {weather ? (
           <>
             <p style={{ fontSize: '2rem' }}>{getWeatherIcon(weather.symbol)}</p>
-            <p style={{ fontSize: '1.2rem' }}>{weather.temperature}°C</p>
+            <p style={{ fontSize: '3rem' }}>{weather.temperature}°C</p>
           </>
         ) : (
           <p>Laddar väder…</p>
