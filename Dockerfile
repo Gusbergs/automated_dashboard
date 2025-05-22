@@ -11,6 +11,7 @@ WORKDIR /app
 COPY backend/ ./backend
 COPY --from=frontend /app/frontend/build/ ./backend/src/main/resources/static/
 WORKDIR /app/backend
+RUN chmod +x gradlew
 RUN ./gradlew build -x test
 
 # === Run container ===
