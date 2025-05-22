@@ -25,7 +25,7 @@ function isToday(isoString) {
 
 // Väder-emoji
 function getWeatherIcon(symbol) {
-  const iconProps = { size: 48, color: "#333" };
+  const iconProps = { size: 82, color: "#333" };
 
   switch (symbol) {
     case 1:  return <WiDaySunny {...iconProps} />;           // Clear sky
