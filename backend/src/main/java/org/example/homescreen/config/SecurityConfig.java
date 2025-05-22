@@ -37,18 +37,27 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
                         .requestMatchers(
+                                "/",
+                                "/index.html",
+                                "/static/**",
+                                "/favicon.ico",
+                                "/manifest.json",
+                                "/logo192.png",
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/api/weather"
+                                "/v3/api-docs/**"
                         ).permitAll()
+
+                        .requestMatchers("/api/weather").permitAll()
+
                         .anyRequest().access((authentication, context) -> {
-                            var Oauth = authentication.get();
-                            if (Oauth.getPrincipal() instanceof OAuth2User user) {
+                            var authObj = authentication.get();
+                            if (authObj.getPrincipal() instanceof OAuth2User user) {
                                 String email = user.getAttribute("email");
-                                System.out.println(email);
-                                return new AuthorizationDecision("gustavbergstrom98@gmail.com".equals(email));
+                                System.out.println("Inloggad som: " + email);
+                                return new AuthorizationDecision("gustavbergstrom98@gmail.com".equalsIgnoreCase(email));
                             }
                             return new AuthorizationDecision(false);
                         })
@@ -61,14 +70,14 @@ public class SecurityConfig {
                         .authorizationEndpoint(endpoint ->
                                 endpoint.authorizationRequestResolver(resolver)
                         )
-                        .defaultSuccessUrl("http://localhost:3000", true)
+                        .defaultSuccessUrl("/", true)
                 )
-                .logout(logout ->
-                        logout.logoutSuccessUrl("http://localhost:3000")
-                );
+                .logout(logout -> logout.logoutSuccessUrl("/"));
 
         return http.build();
     }
+}
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
